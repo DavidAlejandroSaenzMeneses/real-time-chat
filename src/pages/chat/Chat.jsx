@@ -3,7 +3,7 @@ import Users from './Users';
 import MessageList from './MessageList'
 import AddMessage from './AddMessage';
 
-export default function Chat() {
+export default function Chat(props) {
   return (
     <>
       <Header />
@@ -13,7 +13,7 @@ export default function Chat() {
         </aside>
         <section className="right h-full w-[75%] md:w-4/6">
           <MessageList />
-          <AddMessage />
+          <AddMessage socket={props.socket}/>
         </section>
       </div>
     </>
