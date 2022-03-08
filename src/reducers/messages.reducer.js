@@ -4,9 +4,10 @@ const messages = (state = [], action) => {
         case types.ADD_MESSAGE:
         case types.MESSAGE_RECEIVED:
             return state.concat([{
-                message: action.message,
+                id: action.id,
                 author: action.author,
-                id: action.id
+                message: action.message,
+                create_at:action.create_at
             }])
         default:
             return state

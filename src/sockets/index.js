@@ -1,27 +1,27 @@
 import * as types from '../constants/ActionTypes';
-import {addUser, messageReceived,populateUsesList} from '../actions';
+import {addUser, messageReceived,populateUsersList} from '../actions';
 import io from 'socket.io-client';
 
 const setupSockets = (dispatch, username)=>{
     const URL_SERVER='http://localhost:3900'
     const socket = io(URL_SERVER);
 
-    socket.emit({
-        type:type.ADD_USER,
-        name:username
+    socket.emit(types.ADD_USER,username);
+
+    socket.on(types.MESSAGE_RECEIVED,(data)=>{
+        data.map((message)=>{
+            dispatch(messageReceived(message.id,message.message, message.author, message.create_at));
+        })
     })
 
-    socket.on(type.ADD_USER,(user)=>{
-        dispatch(addUser(user.name));
+    socket.on(types.ADD_MESSAGE,(data)=>{
+        dispatch(messageReceived(data.id,data.message, data.author,data.create_at));
     });
 
-    socket.on(type.ADD_MESSAGE,(message)=>{
-        dispatch(addUser(users.name));
-    })
-
-    socket.on(USER_LIST,(users)=>{
-        dispatch(populateUsesList(users));
-    })
+    socket.on(types.USER_LIST,(users)=>{
+        dispatch(populateUsersList(users));
+    });
+    return socket;
 }
 
 export default setupSockets;

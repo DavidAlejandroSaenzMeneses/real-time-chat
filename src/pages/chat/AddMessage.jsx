@@ -1,29 +1,16 @@
 import { useRef } from 'react';
 import { PaperAirplaneIcon } from '@heroicons/react/solid';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addMessage } from '../../actions';
 
-function AddMessage(props) {
+function AddMessage() {
     const dispatch = useDispatch();
-    //referencias DOM
     const messageRef = useRef();
     const sendMessage = async (event) => {
         event.preventDefault();
         if (messageRef.current.value !== '') {
-            try {
-                await props.socket.emit('send message', messageRef.current.value, (res) => {
-                    if (res !== true) {
-                        dispatch(addMessage(res, 'Me'));
-                    } else {
-                        dispatch(addMessage(messageRef.current.value, 'Me'));
-                        messageRef.current.value = '';
-                    }
-                });
-                
-            } catch (error) {
-                dispatch(addMessage('mensaje no enviado', 'Me'));
-            }
+            dispatch(addMessage(messageRef.current.value, 'Me'));
+            messageRef.current.value = '';
         }
     }
     return (
@@ -37,11 +24,5 @@ function AddMessage(props) {
             </form>
         </div>
     )
-}
-/*AddMessage.propTypes = {
-    dispatch: PropTypes.func.isRequired
-}*/
-AddMessage.propTypes = {
-    dispatch: PropTypes.func
 }
 export default AddMessage;

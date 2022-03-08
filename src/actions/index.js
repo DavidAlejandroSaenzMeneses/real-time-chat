@@ -18,15 +18,16 @@ export const addUser = name=>({
 });
 
 //recibe mensajes
-export const messageReceived = (message,author)=>({
+export const messageReceived = (id,message,author,create_at)=>({
     type: types.MESSAGE_RECEIVED,
     id: nextMessageId++,
     message,
-    author
+    author,
+    create_at
 });
 
 //Actualiza listado de usuarios conectados
-export const pupulateUsersList =  users =>({
+export const populateUsersList =  users =>({
     type: types.USER_LIST,
     users
 })
