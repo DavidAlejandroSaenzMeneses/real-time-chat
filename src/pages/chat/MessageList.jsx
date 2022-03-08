@@ -5,14 +5,14 @@ import Message from './Message';
 function MessageList() {
     let messages = useSelector(state => state.messages);
     return (
-        <section className="container-messages flex w-full font-bold bg-amber-50 h-[90%] justify-center overflow-auto">
-            <div className="message-list w-4/5 p-2">
-                <ul>
+        <section className="message-list bloc w-full font-bold bg-amber-50 h-[90%] overflow-auto pb-2 ">
                     {messages &&
-                        messages.map((message, i) => (<Message key={message.id} {...message}/>))
+                        messages.map((message, i) => {
+                            if (message.create_at) {
+                                return(<Message key={message.id} {...message} />)
+                            }
+                        })
                     }
-                </ul>
-            </div>
         </section>
     )
 }

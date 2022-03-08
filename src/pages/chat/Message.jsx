@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
+import { DateTime } from "luxon";
 
 function Message({ author, message, create_at }) {
     return (
-        <div className="bloc bg-white rounded-lg p-2 text-gray-700 shadow-lg max-w-xl mt-3">
+        <div className="bloc  w-4/5 bg-white rounded-lg p-2 text-gray-700 shadow-lg max-w-xl mt-3 mx-auto">
             <div className="flex jusntify-start font-bold">{author}</div>
             <div className="flex justify-between">
                 <div className="text-gray-500 font-normal">{message}</div>
-                <div className="flex justify-end italic font-normal">{create_at}</div>
+                <div className="flex justify-end italic font-normal">{DateTime.fromISO(create_at).toFormat('ff')}</div>
             </div>
         </div>
     )
