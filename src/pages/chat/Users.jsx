@@ -1,13 +1,16 @@
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types'; 
 import {UserIcon} from '@heroicons/react/solid';
 
-export default function users() {
-    const userList = ['Tesla','Peter','Stan','Musk','Tony','Brendan'];
+function Users() {
+    //const users = [{id:1,name:'Tesla'},{id:2,name:'Peter'}];
+    let users = useSelector(state => state.users);
     return (
         <section className="h-full w-full">
             <div className="titulo h-[10%] p-2 font-bold text-gray-700 border-b">Users Online</div>
             <div className="lista-usuarios h-[90%] w-full overflow-auto">
-                {userList &&(
-                    userList.map((user,i)=>{
+                {users &&(
+                    users.map((user,i)=>{
                         return(
                             <div key={i} className="user-item block md:flex w-full md:h-16 border-y md:border-0">
                                 <div className="user-foto flex w-full md:w-1/5 items-center justify-center py-1">
@@ -24,3 +27,24 @@ export default function users() {
         </section>
     )
 }
+
+/*Users.propTypes = {
+    users:PropTypes.arrayOf(
+        PropTypes.shape({
+            id:PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired
+
+        }).isRequired
+    ).isRequired
+}*/
+Users.propTypes = {
+    users:PropTypes.arrayOf(
+        PropTypes.shape({
+            id:PropTypes.number,
+            name: PropTypes.string
+
+        })
+    )
+}
+
+export default Users;
