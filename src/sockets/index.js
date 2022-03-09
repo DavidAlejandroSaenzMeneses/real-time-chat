@@ -1,9 +1,13 @@
+import runtimeEnv from '@mars/heroku-js-runtime-env';
+import io from 'socket.io-client';
 import * as types from '../constants/ActionTypes';
 import { addUser, messageReceived, populateUsersList } from '../actions';
-import io from 'socket.io-client';
+
+
 
 const setupSockets = (dispatch, username) => {
-    const urlServer = process.env.REACT_APP_URL_SERVER;
+    const env = runtimeEnv();
+    const urlServer = env.REACT_APP_URL_SERVER;
     const socket = io(urlServer);
 
     socket.emit(types.ADD_USER, username);

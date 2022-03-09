@@ -19,7 +19,6 @@ export default function Login() {
     const nickToRegRef = useRef();
     const passwordToRegRef = useRef();
     const urlServer = env.REACT_APP_URL_SERVER;
-    console.log(env.REACT_APP_URL_SERVER);
     const MySwal = withReactContent(Swal);
     const cookies = new Cookies();
     const navigate = useNavigate();
