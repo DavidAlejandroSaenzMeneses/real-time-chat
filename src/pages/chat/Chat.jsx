@@ -1,9 +1,22 @@
+import {useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
 import Header from '../../components/Header'
 import Users from './Users';
 import MessageList from './MessageList'
 import AddMessage from './AddMessage';
 
+
+
 export default function Chat() {
+  const cookies = new Cookies();
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(!cookies.get('username')){
+      navigate('/',{replace:true});
+    }
+  })
   return (
     <>
       <Header />
@@ -13,7 +26,7 @@ export default function Chat() {
         </aside>
         <section className="right h-full w-[75%] md:w-4/6">
           <MessageList />
-          <AddMessage/>
+          <AddMessage />
         </section>
       </div>
     </>
