@@ -34,7 +34,7 @@ export default function Login() {
             return MySwal.fire('ERROR', 'Datos incompletos', 'warning');
         }
         try {
-            await axios.post(`${urlServer}/login`, { user: userRef.current.value, password: passwordRef.current.value })
+            await axios.post(`${urlServer}/api/v1/login`, { user: userRef.current.value, password: passwordRef.current.value })
                 .then(data => (data))
                 .then(data => {
                     if (data.status == 200) {
@@ -64,7 +64,7 @@ export default function Login() {
             nickname: nickToRegRef.current.value
         }
         try {
-            await axios.post(`${urlServer}/users`, dataToSend)
+            await axios.post(`${urlServer}/api/v1/users`, dataToSend)
                 .then(data => data)
                 .then(data => {
                     if (data.status == 200) {
