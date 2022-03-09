@@ -45,7 +45,8 @@ export default function Login() {
                         cookies.set('username', payload.username, { path: '/' });
                         cookies.set('name', payload.fullName, { path: '/' });
                         cookies.set('nickname', (nickRef.current.value !== '' ? nickRef.current.value : payload.nickname), { path: '/' });
-                        navigate("/chat-room", { replace: true });
+                        //navigate("/chat-room", { replace: true });
+                        window.location.assign("/chat-room");
                     }
                 })
         } catch (error) {
