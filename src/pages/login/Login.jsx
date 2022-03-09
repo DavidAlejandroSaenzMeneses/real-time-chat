@@ -5,8 +5,10 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { PaperAirplaneIcon } from '@heroicons/react/outline';
 import Cookies from 'universal-cookie';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 export default function Login() {
+    const env = runtimeEnv();
     const [mode, setMode] = useState('login');
     //referencias DOM
     const userRef = useRef();
@@ -16,8 +18,8 @@ export default function Login() {
     const nameToRegRef = useRef();
     const nickToRegRef = useRef();
     const passwordToRegRef = useRef();
-    const urlServer = process.env.REACT_APP_URL_SERVER;
-    console.log(process.env.REACT_APP_URL_SERVER);
+    const urlServer = env.REACT_APP_URL_SERVER;
+    console.log(env.REACT_APP_URL_SERVER);
     const MySwal = withReactContent(Swal);
     const cookies = new Cookies();
     const navigate = useNavigate();
