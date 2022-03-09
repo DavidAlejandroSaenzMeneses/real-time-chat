@@ -3,7 +3,7 @@ import { addUser, messageReceived, populateUsersList } from '../actions';
 import io from 'socket.io-client';
 
 const setupSockets = (dispatch, username) => {
-    const urlServer = process.env.URL_SERVER;
+    const urlServer = process.env.URL_SERVER_NODE;
     const socket = io(urlServer);
 
     socket.emit(types.ADD_USER, username);
