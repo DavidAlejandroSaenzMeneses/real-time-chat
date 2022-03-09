@@ -1,10 +1,10 @@
 import './assets/css/main.css';
-import Chat from './pages/chat/Chat';
+import Router from './routes/Router';
 
 function App() {
   return (
-    <div className="App w-screen h-screen bg-gray-200">
-      <Chat />
+    <div className="App block w-screen h-screen bg-gray-200">
+      <Router />
     </div>
   );
 }

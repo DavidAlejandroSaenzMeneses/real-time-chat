@@ -8,10 +8,14 @@ import App from './App';
 import reducers from './reducers/index.js';
 import setupSockets from './sockets';
 import handleNewMessage from './sagas';
-import username from './utils/name';
+import Cookies from 'universal-cookie';
+//import username from './utils/name';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers,applyMiddleware(sagaMiddleware));
+
+const cookies = new Cookies();
+const username = cookies.get('nickname');
 
 const socket = setupSockets(store.dispatch,username);
 sagaMiddleware.run(handleNewMessage,{socket, username})
